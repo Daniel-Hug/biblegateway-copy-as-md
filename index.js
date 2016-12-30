@@ -49,8 +49,10 @@ function wrapAll(nodes, wrapper) {
 		wrapper.appendChild(nodes[i]);
 	}
 
-	// Place the wrapper just after the cached previousSibling
-	parent.insertBefore(wrapper, previousSibling.nextSibling);
+	// Place the wrapper just after the cached previousSibling,
+	// or if that is null, just before the first child.
+	var nextSibling = previousSibling ? previousSibling.nextSibling : parent.firstChild;
+	parent.insertBefore(wrapper, nextSibling);
 
 	return wrapper;
 }
