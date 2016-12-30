@@ -260,9 +260,6 @@ function cleanChildren(passageContainer) {
 			// chapter number spans
 			descendant.classList.contains('chapternum') ||
 
-			// words of Jesus spans
-			descendant.classList.contains('woj') ||
-
 			// elements that could but don't have child nodes
 			(descendant.matches(':empty') && canHaveChildren(descendant.tagName)) ||
 
@@ -278,7 +275,10 @@ function cleanChildren(passageContainer) {
 		// remove these elements but keep their contents:
 		else if (
 			// text spans
-			descendant.classList.contains('text')
+			descendant.classList.contains('text') ||
+
+			// words of Jesus spans
+			descendant.classList.contains('woj')
 		) {
 			unwrap(descendant);
 		}
