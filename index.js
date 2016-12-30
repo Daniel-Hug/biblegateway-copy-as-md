@@ -236,6 +236,16 @@ function init() {
 		// join identical siblings
 		var newMarkup = joinIdenticalSiblings(clone.innerHTML);
 
+		// turn <span class="small-caps">Lord</span> into plain text all caps
+		if (descendant.outerHTML === '<span class="small-caps">Lord</span>') {
+			descendant.parentNode.replaceChild(document.createTextNode('LORD'), descendant);
+		}
+
+		// turn <span class="small-caps">God</span> into plain text all caps
+		else if (descendant.outerHTML === '<span class="small-caps">God</span>') {
+			descendant.parentNode.replaceChild(document.createTextNode('GOD'), descendant);
+		}
+
 		// remove clone
 		removeNode(clone);
 
