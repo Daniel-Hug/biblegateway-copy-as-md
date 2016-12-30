@@ -305,8 +305,11 @@ function cleanChildren(passageContainer) {
 			unwrap(descendant);
 		}
 
-		// make verse numbers bold
 		else if (descendant.classList.contains('versenum')) {
+			// remove class attribute from <sup class="versenum"> elements
+			descendant.removeAttribute('class');
+
+			// make verse numbers bold
 			wrapAll(descendant.childNodes, document.createElement('b'));
 		}
 
