@@ -263,9 +263,6 @@ function cleanChildren(passageContainer) {
 			// elements that could but don't have child nodes
 			(descendant.matches(':empty') && canHaveChildren(descendant.tagName)) ||
 
-			// verse number spans
-			descendant.classList.contains('versenum') ||
-
 			// hidden elements
 			getComputedStyle(descendant).display === 'none'
 		) {
@@ -278,7 +275,10 @@ function cleanChildren(passageContainer) {
 			descendant.classList.contains('text') ||
 
 			// words of Jesus spans
-			descendant.classList.contains('woj')
+			descendant.classList.contains('woj') ||
+
+			// verse number spans
+			descendant.classList.contains('versenum')
 		) {
 			unwrap(descendant);
 		}
