@@ -237,14 +237,10 @@ function init() {
 		var newMarkup = joinIdenticalSiblings(clone.innerHTML);
 
 		// turn <span class="small-caps">Lord</span> into plain text all caps
-		if (descendant.outerHTML === '<span class="small-caps">Lord</span>') {
-			descendant.parentNode.replaceChild(document.createTextNode('LORD'), descendant);
-		}
+		newMarkup.split('<span class="small-caps">Lord</span>').join('LORD');
 
 		// turn <span class="small-caps">God</span> into plain text all caps
-		else if (descendant.outerHTML === '<span class="small-caps">God</span>') {
-			descendant.parentNode.replaceChild(document.createTextNode('GOD'), descendant);
-		}
+		newMarkup.split('<span class="small-caps">God</span>').join('GOD');
 
 		// remove clone
 		removeNode(clone);
