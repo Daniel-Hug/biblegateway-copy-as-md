@@ -237,10 +237,17 @@ function init() {
 		var newMarkup = joinIdenticalSiblings(clone.innerHTML);
 
 		// turn <span class="small-caps">Lord</span> into plain text all caps
-		newMarkup.split('<span class="small-caps">Lord</span>').join('LORD');
+		// newMarkup = newMarkup.split('<span class="small-caps">Lord</span>').join('LORD');
 
 		// turn <span class="small-caps">God</span> into plain text all caps
-		newMarkup.split('<span class="small-caps">God</span>').join('GOD');
+		// newMarkup = newMarkup.split('<span class="small-caps">God</span>').join('GOD');
+
+		// add <mark> and </mark> tags around quotes to highlight them
+		newMarkup = newMarkup
+			.split('“').join('<mark>“')
+			.split('‘').join('<mark>‘')
+			.split('”').join('”</mark>')
+			.split('’').join('’</mark>');
 
 		// remove clone
 		removeNode(clone);
