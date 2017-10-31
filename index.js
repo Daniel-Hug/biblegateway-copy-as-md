@@ -251,8 +251,10 @@ function init() {
 				.replace(doubleQuoteRE, 'openDouble$1closeDouble');
 		}
 		newMarkup = newMarkup
-			.replace(/open(?:Single|Double)/g, '<mark>')
-			.replace(/close(?:Single|Double)/g, '</mark>');
+			.split('openSingle').join('<mark>‘')
+			.split('openDouble').join('<mark>“')
+			.split('closeSingle').join('’</mark>')
+			.split('closeDouble').join('”</mark>');
 
 		// remove clone
 		removeNode(clone);
