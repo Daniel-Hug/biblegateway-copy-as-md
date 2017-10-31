@@ -247,10 +247,12 @@ function init() {
 		var doubleQuoteRE = /[\“][^\”]*[\”]/g;
 		while (singleQuoteRE.exec(newMarkup) || doubleQuoteRE.exec(newMarkup)) {
 			newMarkup = newMarkup
-				.replace(singleQuoteRE, 'closeSingle')
-				.replace(doubleQuoteRE, 'closeDouble');
+				.replace(singleQuoteRE, 'openSingle$&closeSingle')
+				.replace(doubleQuoteRE, 'openDouble$&closeDouble');
 		}
-		newMarkup = newMarkup.replace(/close(?:Single|Double)/, '<mark>$&</mark>');
+		newMarkup = newMarkup
+			.replace(/open(?:Single|Double)/, '<mark>')
+			.replace(/close(?:Single|Double)/, '</mark>');
 
 		// remove clone
 		removeNode(clone);
