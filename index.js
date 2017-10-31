@@ -243,10 +243,14 @@ function init() {
 		// newMarkup = newMarkup.split('<span class="small-caps">God</span>').join('GOD');
 
 		// add <mark> and </mark> tags around quotes to highlight them
-		var quotationRE = /[\“\‘][^\”]*[\”\’]/g;
-		while (quotationRE.exec(newMarkup)) {
-			newMarkup = newMarkup.replace(quotationRE, '<mark>$&</mark>');
+		var singleQuoteRE = /[\‘][^\’\”]*[\’]/g;
+		var doubleQuoteRE = /[\“][^\”]*[\”]/g;
+		while (singleQuoteRE.exec(newMarkup) || doubleQuoteRE.exec(newMarkup)) {
+			newMarkup = newMarkup
+				.replace(singleQuoteRE, 'closeSingle')
+				.replace(doubleQuoteRE, 'closeDouble');
 		}
+		newMarkup = newMarkup.replace(/close(?:Single|Double)/, '<mark>$&</mark>');
 
 		// remove clone
 		removeNode(clone);
